@@ -36,13 +36,8 @@ int main(){
 		}while(time<1000 || time>2400);
 		
 		price[i] = CalculatePrice(student, adult, package, time);
-		
-		printf("\nDo you want to rent shoes?(y/n): ");
-		scanf("%s", &yn);
-		if(yn=='y' || yn=='Y'){
-			shoes=4*(student+adult);
-			price[i]+=shoes;
-		}
+		shoes=4*(student+adult);
+
 		DisplayReceipt(shoes, i, adult, student, package, time, price[i]);
 		Continue();
 	}
