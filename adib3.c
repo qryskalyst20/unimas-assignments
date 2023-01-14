@@ -1,14 +1,49 @@
 #include <stdio.h>
 #include <string.h>
 
-float CalculatePrice(int, int, int, int);
-void DisplayReceipt(float, int, int, int, int, int, float);
+void print_menu();
+float CalculatePrice(int*, int, int, int, int);
+void DisplayReceipt(int*, int, int, int, int, int, float);
 void Continue();
 
 int main(){
 	
-	int i, package, time, adult, student;
-	float price[10], shoes=0;
+	int choice;
+	
+	do{
+		puts("/===========================/");
+		puts("           MENU               ");
+		puts("/============================/");
+		puts("1. Enter user's order");
+		puts("2. Summary of Daily Transaction");
+		puts("3. Summary of Monthly Avenue Report");
+		puts("4. Exit");
+		printf(">> ");
+		scanf("%d", &choice);
+		
+		switch(choice){
+			case 1 : 
+				print_menu(); break;
+			case 2 :
+				puts("SUMMARY OF DAILY TRANSACTION"); break;
+			case 3 :
+				puts("SUMMARY OF MONTHLY AVENUE REPORT"); break;
+			case 4 : 
+				puts("EXIT"); break;
+			default :
+				puts("INVALID INPUT!");
+		}	
+	}while(choice!=4);
+	
+	puts("Thankyou for using our program xoxo");
+	
+	return 0;
+}
+
+void print_menu(){
+	//Print the menu
+	int i, package, time, adult, student, shoes;
+	float price[10];
 	char yn;
 		
 	for(i=0; i<10; i++){
@@ -35,22 +70,22 @@ int main(){
 			}
 		}while(time<1000 || time>2400);
 		
-		price[i] = CalculatePrice(student, adult, package, time);
-		shoes=4*(student+adult);
+		price[i] = CalculatePrice(&shoes, student, adult, package, time);
 
-		DisplayReceipt(shoes, i, adult, student, package, time, price[i]);
+		DisplayReceipt(&shoes, i, adult, student, package, time, price[i]);
 		Continue();
 	}
-	
-	return 0;
+		
 }
 
-float CalculatePrice(int s, int a, int p, int t){
+float CalculatePrice(int *shoes, int s, int a, int p, int t){
 	
 	int student[4][3] = {{5, 8, 8}, {7, 10, 10}, {9, 12, 12}, {7, 0, 0}};
 	int adult[3][3] = {{8, 12, 10}, {10, 14, 12}, {12, 16, 14}};
 	int time, temp;
 	float price;
+	
+	*shoes=4*(s+a);
 	
 	if(t>=1000 && t<=1800){
 		time=0;
@@ -73,10 +108,10 @@ float CalculatePrice(int s, int a, int p, int t){
 		}
 	}
 	
-	return s*(student[p-1][time]) + a*(adult[p-1][time]);
+	return *shoes+s*(student[p-1][time]) + a*(adult[p-1][time]);
 }
 
-void DisplayReceipt(float s, int i, int adult, int student, int p, int t, float price){
+void DisplayReceipt(int *shoes, int i, int adult, int student, int p, int t, float price){
 
 	printf("\n\n=======================================\n");
 	printf("\tRECEIPT\n");
@@ -108,7 +143,7 @@ void DisplayReceipt(float s, int i, int adult, int student, int p, int t, float 
 		printf("\t\tMidnight Special\n");
 	}
 	
-	printf("\nBowling Shoes Rental: RM%.2f\n", s);
+	printf("\nBowling Shoes Rental: RM%d\n", *shoes);
 	
 	printf("=======================================\n");
 	printf("Total Price: RM%.2f\n", price);
