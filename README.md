@@ -1,2 +1,2 @@
-# Simple-Bowling-Booking-System
+# unimas-assignments
  assignment adib adiba
