@@ -43,3 +43,183 @@ Total Price: RM42.00
 =======================================
 
 
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekend
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM68.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekday
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM54.00
+=======================================
+
+
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekday
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM60.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekend
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM66.00
+=======================================
+
+
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekday
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM60.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekend
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM66.00
+=======================================
+
+
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekday
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM60.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekend
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM66.00
+=======================================
+
+
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekday
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM60.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekend
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM66.00
+=======================================
+
+
+Lane #: 1
+
+--Players--
+Student: 3
+Adult: 3
+
+Package: 	Weekday
+Time: 		Midnight Special
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM60.00
+=======================================
+
+
+Lane #: 2
+
+--Players--
+Student: 6
+Adult: 0
+
+Package: 	Weekend
+Time: 		Normal Hour
+
+Bowling Shoes Rental: RM24
+=======================================
+Total Price: RM66.00
+=======================================
+
+

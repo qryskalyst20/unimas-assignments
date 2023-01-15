@@ -2,15 +2,16 @@
 #include <string.h>
 #include <stdlib.h>
 
-void print_menu();
-float CalculatePrice(int*, int, int, int, int);
+void print_menu(int*, int*, float*, float*);
+float CalculatePrice(int*, float*, int, int, int, int);
 void DisplayReceipt(int*, int, int, int, int, int, float);
 void Continue();
-void DailyTransaction();
+void dailyTransaction(int*, int*, float*, float*);
 
 int main(){
 	
-	int choice;
+	int choice, totalstudent, totaladult;
+	float totalprice=0, totalshoes=0;
 	
 	do{
 		puts("/===========================/");
@@ -20,14 +21,16 @@ int main(){
 		puts("2. Summary of Daily Transaction");
 		puts("3. Summary of Monthly Avenue Report");
 		puts("4. Exit");
-		printf(">> ");
+		printf("\n>> ");
 		scanf("%d", &choice);
 		
 		switch(choice){
 			case 1 : 
-				print_menu(); break;
+				print_menu(&totalstudent, &totaladult, &totalprice, &totalshoes);
+				system("cls"); break;
 			case 2 :
-				puts("SUMMARY OF DAILY TRANSACTION"); break;
+				dailyTransaction(&totalstudent, &totaladult, &totalprice, &totalshoes);
+				system("cls"); break;
 			case 3 :
 				puts("SUMMARY OF MONTHLY AVENUE REPORT"); break;
 			case 4 : 
@@ -42,13 +45,13 @@ int main(){
 	return 0;
 }
 
-void print_menu(){
+void print_menu(int *totalstudent, int *totaladult, float *totalprice, float *totalshoes){
 	//Print the menu
 	int i, package, time, adult, student, shoes;
-	float price[10];
+	float price[i];
 	char yn;
 		
-	for(i=0; i<10; i++){
+	for(i=0; i<2; i++){
 		system("cls");
 		printf("\tWELCOME TO ROLL & BOWL!!\n\n");
 		printf("Lane #%d:\n\n", i+1);
@@ -56,8 +59,11 @@ void print_menu(){
 		printf("How many players for each category: \n");
 		printf("Student: ");
 		scanf("%d", &student);
+		*totalstudent+=student;
+		
 		printf("Adult: ");
 		scanf("%d", &adult);
+		*totaladult+=adult;
 		
 		printf("\nSelect Package:\n(1) Weekday\t\t(2) Weekend\n(3) Public Holiday\t(4) School Holiday Special");
 		printf("\n=> ");
@@ -72,7 +78,8 @@ void print_menu(){
 			}
 		}while(time<1000 || time>2400);
 		
-		price[i] = CalculatePrice(&shoes, student, adult, package, time);
+		price[i] = CalculatePrice(&shoes, &totalshoes, student, adult, package, time);
+		*totalprice+=price[i];
 
 		DisplayReceipt(&shoes, i, adult, student, package, time, price[i]);
 		Continue();
@@ -80,7 +87,7 @@ void print_menu(){
 		
 }
 
-float CalculatePrice(int *shoes, int s, int a, int p, int t){
+float CalculatePrice(int *shoes, float *totalshoes, int s, int a, int p, int t){
 	
 	int student[4][3] = {{5, 8, 8}, {7, 10, 10}, {9, 12, 12}, {7, 0, 0}};
 	int adult[3][3] = {{8, 12, 10}, {10, 14, 12}, {12, 16, 14}};
@@ -88,6 +95,7 @@ float CalculatePrice(int *shoes, int s, int a, int p, int t){
 	float price;
 	
 	*shoes=4*(s+a);
+	*totalshoes+=*shoes;
 	
 	if(t>=1000 && t<=1800){
 		time=0;
@@ -189,6 +197,20 @@ void DisplayReceipt(int *shoes, int i, int adult, int student, int p, int t, flo
 	fprintf(data, "=======================================\n\n\n");
 	
 	fclose(data);
+}
+
+void dailyTransaction(int *totalstudent, int *totaladult, float *totalprice, float *totalshoes){
+	
+	system("cls");
+	printf("--------------------Daily Transaction--------------------\n\n");
+	
+	printf("Total number of student: %d\n", *totalstudent);
+	printf("Total number of adult: %d\n", *totaladult);
+	printf("Total price is: RM%.2f\n", *totalprice);
+	printf("Total price of bowling shoes rent: RM%.2f\n\n", *totalshoes);
+	
+	Continue();
+	
 }
 
 void Continue(){
