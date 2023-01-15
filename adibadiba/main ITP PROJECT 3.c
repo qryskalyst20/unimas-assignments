@@ -3,11 +3,11 @@
 
 void print_menu();
 float CalculatePrice(int*, int, int, int, int);
-void DisplayReceipt(int*, int, int, int, int, int, float);
+void DisplayReceipt(int*, int, int, int, int, int, float,int,int,int);
 void Continue();
+void dailyTransaction();
 
 int main(){
-	
 	int choice;
 	
 	do{
@@ -20,14 +20,22 @@ int main(){
 		puts("4. Exit");
 		printf(">> ");
 		scanf("%d", &choice);
+		fflush(stdin);
+		
 		
 		switch(choice){
 			case 1 : 
-				print_menu(); break;
+				print_menu(); 
+				system("cls");
+				break;
 			case 2 :
-				puts("SUMMARY OF DAILY TRANSACTION"); break;
+				dailyTransaction();
+				getch();
+				system("cls");
+				break;
 			case 3 :
-				puts("SUMMARY OF MONTHLY AVENUE REPORT"); break;
+				puts("SUMMARY OF MONTHLY AVENUE REPORT");
+				break;
 			case 4 : 
 				puts("EXIT"); break;
 			default :
@@ -40,16 +48,33 @@ int main(){
 	return 0;
 }
 
+
+
 void print_menu(){
 	//Print the menu
+	float *totalprice_weekdaynormalhour = 0;
+	float totalprice_weekdaypeakhour = 0;
+	float totalprice_weekdaymidnight = 0;
+	float totalprice_weekendnormalhour = 0;
+	float totalprice_weekendpeakhour = 0;
+	float totalprice_weekendmidnight = 0;
 	int i, package, time, adult, student, shoes;
+	int day,month,year;
 	float price[10];
 	char yn;
 		
-	for(i=0; i<10; i++){
+	for(i=0; i<2; i++){
 		system("cls");
 		printf("\tWELCOME TO ROLL & BOWL!!\n\n");
-		printf("Lane #%d:\n\n", i+1);
+		printf("Enter day : ");
+		scanf("%d",&day);
+		printf("Enter month : ");
+		scanf("%d",&month);
+		printf("Enter year : ");
+		scanf("%d",&year);
+		
+		printf("\nToday's date: %d/%d/%d", day, month, year);
+		printf("\n\nLane #%d:\n\n", i+1);
 		
 		printf("How many players for each category: \n");
 		printf("Student: ");
@@ -71,10 +96,36 @@ void print_menu(){
 		}while(time<1000 || time>2400);
 		
 		price[i] = CalculatePrice(&shoes, student, adult, package, time);
+		DisplayReceipt(&shoes, i, adult, student, package, time, price[i],day,month,year);
+		
+		if(package==1 && (time>=1000 && time<=1800)){
+		*totalprice_weekdaynormalhour += price[i];
+		printf("Total Weekday normal hour price : RM%.2f \n",*totalprice_weekdaynormalhour);
+	}
+		if(package==1 && (time>=1900 && time<=2200)){
+		totalprice_weekdaypeakhour += price[i];
+		printf("Total Weekday peak hour price : RM%.2f \n",totalprice_weekdaypeakhour);
+	}
+		if(package==1 && (time>=2200 && time<=2400)){
+		totalprice_weekdaymidnight += price[i];
+		printf("Total Weekday midnight price : RM%.2f \n",totalprice_weekdaymidnight);
+	}
+		if(package==2 && (time>=1000 && time<=1800)){
+		totalprice_weekendnormalhour += price[i];
+		printf("Total Weekend normal hour price : RM%.2f \n",totalprice_weekendnormalhour);
+	}
+		if(package==2 && (time>=1900 && time<=2200)){
+		totalprice_weekendpeakhour += price[i];
+		printf("Total Weekend peak hour price : RM%.2f \n",totalprice_weekendpeakhour);
+	}
+		if(package==2 && (time>=2200 && time<=2400)){
+		totalprice_weekendmidnight += price[i];
+		printf("Total Weekend midnight price : RM%.2f \n",totalprice_weekendmidnight);
+	}
 
-		DisplayReceipt(&shoes, i, adult, student, package, time, price[i]);
 		Continue();
 	}
+	
 		
 }
 
@@ -111,12 +162,12 @@ float CalculatePrice(int *shoes, int s, int a, int p, int t){
 	return *shoes+s*(student[p-1][time]) + a*(adult[p-1][time]);
 }
 
-void DisplayReceipt(int *shoes, int i, int adult, int student, int p, int t, float price){
-
+void DisplayReceipt(int *shoes, int i, int adult, int student, int p, int t, float price,int day, int month, int year){
+	
 	printf("\n\n=======================================\n");
 	printf("\tRECEIPT\n");
 	printf("=======================================\n");
-	
+	printf("Date : %d/%d/%d \n",day,month,year);
 	printf("Lane #: %d\n\n", i+1);
 	printf("--Players--\n");
 	printf("Student: %d\n", student);
@@ -149,7 +200,9 @@ void DisplayReceipt(int *shoes, int i, int adult, int student, int p, int t, flo
 	printf("Total Price: RM%.2f\n", price);
 	printf("=======================================\n\n\n");
 	
+	
 }
+
 
 void Continue(){
 	
@@ -157,12 +210,12 @@ void Continue(){
 	getch();
 }
 
-
-
-
-
-
-
-
-
+void dailyTransaction(){
+	int day, year, month;
+	float *totalprice_weekdaynormalhour = 0;
+	printf("=========== DAILY TRANSACTION =============\n");
+	printf("Date : %d/%d/%d",day,month,year);
+	printf("Total Weekday normal hour price : RM%.2f",*totalprice_weekdaynormalhour);
+	
+}
 
